@@ -6,15 +6,29 @@
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
+            @if (User.IsInRole("Administrator"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Car[0].VIN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Car[0].ModelId)
+                </th>
+            }
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].ModelId)
+                @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarModel[0].Model)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].MileageKm)
@@ -28,8 +42,24 @@
     <tbody>
 @foreach (var item in Model.Car) {
         <tr>
+            @if (User.IsInRole("Administrator"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.VIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelId)
+                </td>
+            }
             <td>
-                @Html.DisplayFor(modelItem => item.ModelId)
+                @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
+                    carModel => carModel.ID == item.ModelId
+                    ).Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
+                    carModel => carModel.ID == item.ModelId
+                    ).Model)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MileageKm)
@@ -38,9 +68,12 @@
                 @Html.DisplayFor(modelItem => item.ProductionDate)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                }
             </td>
         </tr>
 }

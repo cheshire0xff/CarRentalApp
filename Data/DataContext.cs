@@ -19,5 +19,11 @@ namespace CarRentalApp.Data
         public DbSet<CarRentalApp.Models.CarModel> CarModel { get; set; }
 
         public DbSet<CarRentalApp.Models.Rental> Rental { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>().ToTable("Car");
+            modelBuilder.Entity<CarModel>().ToTable("CarModel");
+            modelBuilder.Entity<Rental>().ToTable("Rental");
+        }
     }
 }

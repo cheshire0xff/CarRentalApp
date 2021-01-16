@@ -14,9 +14,15 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Car.VIN" class="control-label"></label>
+                <input asp-for="Car.VIN" class="form-control" />
+                <span asp-validation-for="Car.VIN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Car.ModelId" class="control-label"></label>
                 <input asp-for="Car.ModelId" class="form-control" />
                 <span asp-validation-for="Car.ModelId" class="text-danger"></span>
+                @Html.ValidationMessage("ModelId")
             </div>
             <div class="form-group">
                 <label asp-for="Car.MileageKm" class="control-label"></label>

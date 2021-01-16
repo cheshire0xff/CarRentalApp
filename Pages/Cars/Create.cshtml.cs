@@ -36,6 +36,13 @@ namespace CarRentalApp.Pages.Cars
                 return Page();
             }
 
+            // see if car model exist
+            if (await _context.CarModel.FindAsync(Car.ModelId) == null)
+            {
+                ModelState.AddModelError("ModelId", "Model nie istenieje!");
+                return Page();
+            }
+
             _context.Car.Add(Car);
             await _context.SaveChangesAsync();
 

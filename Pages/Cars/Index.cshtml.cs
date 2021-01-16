@@ -20,10 +20,12 @@ namespace CarRentalApp.Pages.Cars
         }
 
         public IList<Car> Car { get;set; }
+        public IList<CarModel> CarModel { get;set; }
 
         public async Task OnGetAsync()
         {
             Car = await _context.Car.ToListAsync();
+            CarModel = await _context.CarModel.ToListAsync();
         }
     }
 }

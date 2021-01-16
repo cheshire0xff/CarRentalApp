@@ -10,8 +10,7 @@ namespace CarRentalApp.Models
         [Required]
         public int ModelId{ get; set;}
         [Required]
-        [MinLength(0)]
-        public int MileageKm{ get; set;}
+        public uint MileageKm{ get; set;}
         [Required]
         public DateTime ProductionDate{ get; set; }
     }

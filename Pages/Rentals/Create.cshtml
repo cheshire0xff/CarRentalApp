@@ -14,12 +14,43 @@
     <script type="text/javascript">
     function calcPrice(pricePerDay)
     {
-        document.getElementById("price").textContent = 'lol'
+        let start = Date.parse(document.getElementById("Rental_StartDate").value)
+        if (isNaN(start))
+        {
+            return;
+        }
+        let end = Date.parse(document.getElementById("Rental_EndDate").value)
+        if (isNaN(end))
+        {
+            return;
+        }
+        if (start >= end)
+        {
+            return;
+        }
+        let differenceMs = end - start;
+        let differenceDays = differenceMs / 1000 / 60 / 60 / 24;
+        document.getElementById("price").textContent = Math.ceil(differenceDays) * pricePerDay;
     }
     </script>
     <div id="price"></div>
     <button onclick="calcPrice(@Model.Car.PricePerDay)">Calculate Rental Price</button>
     <dl class="row">
+        @if (Model.CarModel != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CarModel.Manufacturer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CarModel.Manufacturer)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CarModel.Model)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CarModel.Model)
+            </dd>
+        }
         @if (User.IsInRole("Administrator"))
         {
             <dt class="col-sm-2">
@@ -28,13 +59,13 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Car.ModelId)
             </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.VIN)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.VIN)
+            </dd>
         }
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.VIN)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.VIN)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.PricePerDay)
         </dt>

@@ -11,18 +11,21 @@
     <h4>Rental</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rental.CarID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rental.CarID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rental.UserID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rental.UserID)
-        </dd>
+        @if (User.IsInRole("Administrator"))
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rental.CarID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rental.CarID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Rental.UserID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Rental.UserID)
+            </dd>
+        }
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Rental.Price)
         </dt>
@@ -40,6 +43,58 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Rental.EndDate)
+        </dd>
+    </dl>
+    <h4>Car</h4>
+    <hr />
+    <dl class="row">
+        @if (Model.CarModel != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CarModel.Manufacturer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CarModel.Manufacturer)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CarModel.Model)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CarModel.Model)
+            </dd>
+        }
+        @if (User.IsInRole("Administrator"))
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.ModelId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.ModelId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.VIN)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.VIN)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.PricePerDay)
+        </dt>
+        <dd class="col-sm-10" id='carPricePerDay'>
+            @Html.DisplayFor(model => model.Car.PricePerDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.MileageKm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.MileageKm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.ProductionDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.ProductionDate)
         </dd>
     </dl>
 </div>

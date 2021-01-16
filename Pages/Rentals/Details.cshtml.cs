@@ -20,6 +20,8 @@ namespace CarRentalApp.Pages.Rentals
         }
 
         public Rental Rental { get; set; }
+        public Car Car { get; set; }
+        public CarModel CarModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -33,6 +35,12 @@ namespace CarRentalApp.Pages.Rentals
             if (Rental == null)
             {
                 return NotFound();
+            }
+
+            Car = _context.Car.Find(Rental.CarID);
+            if (Car != null)
+            {
+                CarModel = _context.CarModel.Find(Car.ModelId);
             }
             return Page();
         }

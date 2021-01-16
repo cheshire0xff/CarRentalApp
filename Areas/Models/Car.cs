@@ -6,7 +6,7 @@ namespace CarRentalApp.Models
     public class Car
     {
         [Key]
-        public int VIN { get; set;}
+        public string VIN { get; set;}
         [Required]
         public int ModelId{ get; set;}
         [Required]

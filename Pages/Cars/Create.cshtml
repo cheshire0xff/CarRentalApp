@@ -5,6 +5,7 @@
     ViewData["Title"] = "Create";
 }
 
+
 <h1>Create</h1>
 
 <h4>Car</h4>
@@ -15,8 +16,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Car.VIN" class="control-label"></label>
-                <input asp-for="Car.VIN" class="form-control" />
+                <input asp-for="Car.VIN" class="form-control" id="vin" />
                 <span asp-validation-for="Car.VIN" class="text-danger"></span>
+                <span id="result" style="color:red"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Car.ModelId" class="control-label"></label>
@@ -53,3 +55,25 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#vin").on("keyup blur", function () {
+            if (validateVin($("#vin").val())) {
+                console.log("That's a VIN")
+                $("#result").html("");
+            }
+            else {
+                if (vin.length > 0) {
+                    $("#result").html("Not a VIN");
+                }
+        }).trigger("blur");
+    });
+
+    function validateVin(vin) {
+            var re = new RegExp("^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$");
+            return vin.match(re);
+        
+    }
+</script>

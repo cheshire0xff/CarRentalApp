@@ -26,9 +26,9 @@ namespace CarRentalApp.Pages.Rentals
         // if when getting page id was provided
         // on post use it fill car id;
         public Car Car { get; set;}
-        public IActionResult OnGet(int? id)
+        public IActionResult OnGet(string? id)
         {
-            Car = _context.Car.Find(id.Value);
+            Car = _context.Car.Find(id);
             return Page();
         }
         [BindProperty]

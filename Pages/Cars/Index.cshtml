@@ -1,0 +1,48 @@
+@page
+@model CarRentalApp.Pages.Cars.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].ModelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].MileageKm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Car) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MileageKm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductionDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

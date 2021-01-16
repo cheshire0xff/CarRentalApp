@@ -11,7 +11,7 @@ namespace CarRentalApp.Models
         [Required]
         public int CarID { get; set;}
         [Required]
-        public int UserID { get; set;}
+        public string UserID { get; set;}
         [Required]
         public int Price { get; set;}
 

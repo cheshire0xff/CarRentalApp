@@ -34,9 +34,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/CarModels/Index">CarModels</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Rentals/Index">Rentals</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Rentals/Index">Rentals</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

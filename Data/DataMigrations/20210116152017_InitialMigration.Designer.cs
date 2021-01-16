@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalApp.Data.DataMigrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210116115213_InitialMigration")]
+    [Migration("20210116152017_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,10 +24,13 @@ namespace CarRentalApp.Data.DataMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MileageKm")
+                    b.Property<uint>("MileageKm")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ModelId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<uint>("PricePerDay")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ProductionDate")

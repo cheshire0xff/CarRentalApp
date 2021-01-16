@@ -13,6 +13,8 @@ namespace CarRentalApp.Models
         public uint MileageKm{ get; set;}
         [Required]
         public DateTime ProductionDate{ get; set; }
+        [Required]
+        public uint PricePerDay{ get; set;}
     }
     
 }

@@ -7,36 +7,90 @@
 
 <h1>Create</h1>
 
+<h4>Car</h4>
+
+@if (Model.Car != null)
+{
+    <script type="text/javascript">
+    function calcPrice(pricePerDay)
+    {
+        document.getElementById("price").textContent = 'lol'
+    }
+    </script>
+    <div id="price"></div>
+    <button onclick="calcPrice(@Model.Car.PricePerDay)">Calculate Rental Price</button>
+    <dl class="row">
+        @if (User.IsInRole("Administrator"))
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Car.ModelId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Car.ModelId)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.VIN)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.VIN)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.PricePerDay)
+        </dt>
+        <dd class="col-sm-10" id='carPricePerDay'>
+            @Html.DisplayFor(model => model.Car.PricePerDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.MileageKm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.MileageKm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.ProductionDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.ProductionDate)
+        </dd>
+    </dl>
+}
 <h4>Rental</h4>
-<hr />
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Rental.CarID" class="control-label"></label>
-                <input asp-for="Rental.CarID" class="form-control" />
-                <span asp-validation-for="Rental.CarID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rental.UserID" class="control-label"></label>
-                <input asp-for="Rental.UserID" class="form-control" />
-                <span asp-validation-for="Rental.UserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rental.Price" class="control-label"></label>
-                <input asp-for="Rental.Price" class="form-control" />
-                <span asp-validation-for="Rental.Price" class="text-danger"></span>
-            </div>
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="form-group">
+                    <label asp-for="Rental.CarID" class="control-label"></label>
+                    <input asp-for="Rental.CarID" class="form-control" />
+                    <span asp-validation-for="Rental.CarID" class="text-danger"></span>
+                    @Html.ValidationMessage("CarNotFound")
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rental.UserID" class="control-label"></label>
+                    <input asp-for="Rental.UserID" class="form-control" />
+                    <span asp-validation-for="Rental.UserID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rental.Price" class="control-label"></label>
+                    <input asp-for="Rental.Price" class="form-control" />
+                    <span asp-validation-for="Rental.Price" class="text-danger"></span>
+                </div>
+            }
             <div class="form-group">
                 <label asp-for="Rental.StartDate" class="control-label"></label>
                 <input asp-for="Rental.StartDate" class="form-control" />
                 <span asp-validation-for="Rental.StartDate" class="text-danger"></span>
+                @Html.ValidationMessage("DateIncorrect")
             </div>
             <div class="form-group">
                 <label asp-for="Rental.EndDate" class="control-label"></label>
                 <input asp-for="Rental.EndDate" class="form-control" />
                 <span asp-validation-for="Rental.EndDate" class="text-danger"></span>
+                @Html.ValidationMessage("DateIncorrect")
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

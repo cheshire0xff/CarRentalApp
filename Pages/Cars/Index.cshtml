@@ -31,6 +31,9 @@
                 @Html.DisplayNameFor(model => model.CarModel[0].Model)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Car[0].PricePerDay)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Car[0].MileageKm)
             </th>
             <th>
@@ -62,12 +65,16 @@
                     ).Model)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PricePerDay)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.MileageKm)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductionDate)
             </td>
             <td>
+                <a asp-page="/Rentals/Create" asp-route-id="@item.VIN">Rent</a>
                 <a asp-page="./Details" asp-route-id="@item.VIN">Details</a>
                 @if (User.IsInRole("Administrator"))
                 {

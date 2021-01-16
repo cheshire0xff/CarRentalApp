@@ -14,8 +14,9 @@ namespace CarRentalApp.Data.DataMigrations
                     VIN = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ModelId = table.Column<int>(nullable: false),
-                    MileageKm = table.Column<int>(nullable: false),
-                    ProductionDate = table.Column<DateTime>(nullable: false)
+                    MileageKm = table.Column<uint>(nullable: false),
+                    ProductionDate = table.Column<DateTime>(nullable: false),
+                    PricePerDay = table.Column<uint>(nullable: false)
                 },
                 constraints: table =>
                 {

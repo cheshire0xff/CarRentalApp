@@ -22,10 +22,13 @@ namespace CarRentalApp.Data.DataMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MileageKm")
+                    b.Property<uint>("MileageKm")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ModelId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<uint>("PricePerDay")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ProductionDate")

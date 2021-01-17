@@ -57,6 +57,11 @@ namespace CarRentalApp.Pages.Rentals
                 var user = await _userManager.GetUserAsync(HttpContext.User);
                 Rental.UserID = user.Id;
             }
+            if ((Rental.StartDate - DateTime.Now).TotalDays <= 0)
+            {
+                ModelState.AddModelError("DateIncorrect", "Start date cannot be in the past");
+                return Page();
+            }
             if (Rental.StartDate > Rental.EndDate)
             {
                 ModelState.AddModelError("DateIncorrect", "Start Date has to be greater than EndDate");

@@ -11,7 +11,7 @@
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by VIN:
+            Find:
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Search" class="btn btn-primary" /> |
             <a asp-page="./Index">Back to full List</a>
@@ -33,82 +33,78 @@
             {
                 <th>
                     <a asp-page="./Index" asp-route-sortOrder="@Model.VINSort">
-                        @Html.DisplayNameFor(model => model.Car[0].VIN)
+                        @Html.DisplayNameFor(model => model.CarModelCar[0].Car.VIN)
                     </a>
                 </th>
                 <th>
                     <a asp-page="./Index" asp-route-sortOrder="@Model.ModelIdSort">
-                        @Html.DisplayNameFor(model => model.Car[0].ModelId)
+                        @Html.DisplayNameFor(model => model.CarModelCar[0].Car.ModelId)
                     </a>
                 </th>
             }
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.ManufacturerSort">
-                    @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].CarModel.Manufacturer)
                 </a>
             </th>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.ModelSort">
-                    @Html.DisplayNameFor(model => model.CarModel[0].Model)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].CarModel.Model)
                 </a>
             </th>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.PricePerDaySort">
-                    @Html.DisplayNameFor(model => model.Car[0].PricePerDay)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].Car.PricePerDay)
                 </a>
             </th>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.MileageKMSort">
-                    @Html.DisplayNameFor(model => model.Car[0].MileageKm)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].Car.MileageKm)
                 </a>
             </th>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
-                    @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].Car.ProductionDate)
                 </a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Car)
+        @foreach (var item in Model.CarModelCar)
         {
             <tr>
                 @if (User.IsInRole("Administrator"))
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => item.VIN)
+                        @Html.DisplayFor(modelItem => item.Car.VIN)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ModelId)
+                        @Html.DisplayFor(modelItem => item.Car.ModelId)
                     </td>
                 }
                 <td>
-                    @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
-                        carModel => carModel.ID == item.ModelId
-                        ).Manufacturer)
+                    @Html.DisplayFor(modelItem => item.CarModel.Manufacturer)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
-                        carModel => carModel.ID == item.ModelId
-                        ).Model)
+                    @Html.DisplayFor(modelItem => item.CarModel.Model)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PricePerDay)
+                    @Html.DisplayFor(modelItem => item.Car.PricePerDay)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MileageKm)
+                    @Html.DisplayFor(modelItem => item.Car.MileageKm)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductionDate)
+                    @Html.DisplayFor(modelItem => item.Car.ProductionDate)
                 </td>
                 <td>
-                    <a asp-page="/Rentals/Create" asp-route-id="@item.VIN">Rent</a>
-                    <a asp-page="./Details" asp-route-id="@item.VIN">Details</a>
+                    <a asp-page="/Rentals/Create" asp-route-id="@item.Car.VIN">Rent</a>
+                    <a asp-page="./Details" asp-route-id="@item.Car.VIN">Details</a>
                     @if (User.IsInRole("Administrator"))
                     {
-                        <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a>
-                        <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                        <a asp-page="./Edit" asp-route-id="@item.Car.VIN">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Car.VIN">Delete</a>
                     }
                 </td>
             </tr>

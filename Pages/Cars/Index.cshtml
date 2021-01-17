@@ -21,72 +21,68 @@
             @if (User.IsInRole("Administrator"))
             {
                 <th onclick="sortTable(0)">
-                    @Html.DisplayNameFor(model => model.Car[0].VIN)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].Car.VIN)
                 </th>
                 <th onclick="sortTable(1)">
-                    @Html.DisplayNameFor(model => model.Car[0].ModelId)
+                    @Html.DisplayNameFor(model => model.CarModelCar[0].Car.ModelId)
                 </th>
             }
             <th onclick="sortTable(2)">
-                @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
+                @Html.DisplayNameFor(model => model.CarModelCar[0].CarModel.Manufacturer)
             </th>
             <th onclick="sortTable(3)">
-                @Html.DisplayNameFor(model => model.CarModel[0].Model)
+                @Html.DisplayNameFor(model => model.CarModelCar[0].CarModel.Model)
             </th>
             <th onclick="sortTable(4)">
-                @Html.DisplayNameFor(model => model.Car[0].PricePerDay)
+                @Html.DisplayNameFor(model => model.CarModelCar[0].Car.PricePerDay)
             </th>
             <th onclick="sortTable(5)">
-                @Html.DisplayNameFor(model => model.Car[0].MileageKm)
+                @Html.DisplayNameFor(model => model.CarModelCar[0].Car.MileageKm)
             </th>
             <th onclick="sortTable(6)">
-                @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
+                @Html.DisplayNameFor(model => model.CarModelCar[0].Car.ProductionDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Car)
+        @foreach (var item in Model.CarModelCar)
         {
             <tr>
                 @if (User.IsInRole("Administrator"))
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => item.VIN)
+                        @Html.DisplayFor(modelItem => item.Car.VIN)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ModelId)
+                        @Html.DisplayFor(modelItem => item.Car.ModelId)
                     </td>
                 }
                 <td>
-                    @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
-                        carModel => carModel.ID == item.ModelId
-                        ).Manufacturer)
+                    @Html.DisplayFor(modelItem => item.CarModel.Manufacturer)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
-                        carModel => carModel.ID == item.ModelId
-                        ).Model)
+                    @Html.DisplayFor(modelItem => item.CarModel.Model)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PricePerDay)
+                    @Html.DisplayFor(modelItem => item.Car.PricePerDay)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MileageKm)
+                    @Html.DisplayFor(modelItem => item.Car.MileageKm)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductionDate)
+                    @Html.DisplayFor(modelItem => item.Car.ProductionDate)
                 </td>
                 <td>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-page="/Rentals/Create" asp-route-id="@item.VIN">Rent</a>
+                        <a asp-page="/Rentals/Create" asp-route-id="@item.Car.VIN">Rent</a>
                     }
-                    <a asp-page="./Details" asp-route-id="@item.VIN">Details</a>
+                    <a asp-page="./Details" asp-route-id="@item.Car.VIN">Details</a>
                     @if (User.IsInRole("Administrator"))
                     {
-                        <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a>
-                        <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                        <a asp-page="./Edit" asp-route-id="@item.Car.VIN">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Car.VIN">Delete</a>
                     }
                 </td>
             </tr>

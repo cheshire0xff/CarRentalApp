@@ -1,0 +1,7 @@
+﻿tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:hover {
+    background-color: rgba(99,154,255,0.50);
+}

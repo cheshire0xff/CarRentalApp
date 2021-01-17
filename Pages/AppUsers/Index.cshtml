@@ -5,64 +5,57 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    tbody tr:nth-child(even) {
-        background-color: #f3f3f3;
-    }
-
-    tbody tr:hover {
-        background-color: rgba(99,154,255,0.50);
-    }
-</style>
+<link rel="stylesheet" href="~/css/main.css" />
+<script src="~/js/main.js"></script>
 
 <h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="dynamicTable">
     <thead>
         <tr>
-            <th>
+            <th onclick="sortTable(0)">
                 @Html.DisplayNameFor(model => model.AppUser[0].UserName)
             </th>
-            <th>
+            <th onclick="sortTable(1)">
                 @Html.DisplayNameFor(model => model.AppUser[0].NormalizedUserName)
             </th>
-            <th>
+            <th onclick="sortTable(2)">
                 @Html.DisplayNameFor(model => model.AppUser[0].Email)
             </th>
-            <th>
+            <th onclick="sortTable(3)">
                 @Html.DisplayNameFor(model => model.AppUser[0].NormalizedEmail)
             </th>
-            <th>
+            <th onclick="sortTable(4)">
                 @Html.DisplayNameFor(model => model.AppUser[0].EmailConfirmed)
             </th>
-            <th>
+            <th onclick="sortTable(5)">
                 @Html.DisplayNameFor(model => model.AppUser[0].PasswordHash)
             </th>
-            <th>
+            <th onclick="sortTable(6)">
                 @Html.DisplayNameFor(model => model.AppUser[0].SecurityStamp)
             </th>
-            <th>
+            <th onclick="sortTable(7)">
                 @Html.DisplayNameFor(model => model.AppUser[0].ConcurrencyStamp)
             </th>
-            <th>
+            <th onclick="sortTable(8)">
                 @Html.DisplayNameFor(model => model.AppUser[0].PhoneNumber)
             </th>
-            <th>
+            <th onclick="sortTable(9)">
                 @Html.DisplayNameFor(model => model.AppUser[0].PhoneNumberConfirmed)
             </th>
-            <th>
+            <th onclick="sortTable(10)">
                 @Html.DisplayNameFor(model => model.AppUser[0].TwoFactorEnabled)
             </th>
-            <th>
+            <th onclick="sortTable(11)">
                 @Html.DisplayNameFor(model => model.AppUser[0].LockoutEnd)
             </th>
-            <th>
+            <th onclick="sortTable(12)">
                 @Html.DisplayNameFor(model => model.AppUser[0].LockoutEnabled)
             </th>
-            <th>
+            <th onclick="sortTable(13)">
                 @Html.DisplayNameFor(model => model.AppUser[0].AccessFailedCount)
             </th>
             <th></th>

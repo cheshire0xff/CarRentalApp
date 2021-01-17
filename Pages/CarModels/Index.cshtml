@@ -5,48 +5,42 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    tbody tr:nth-child(even) {
-        background-color: #f3f3f3;
-    }
-
-    tbody tr:hover {
-        background-color: rgba(99,154,255,0.50);
-    }
-</style>
+<link rel="stylesheet" href="~/css/main.css" />
+<script src="~/js/main.js"></script>
 
 <h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="dynamicTable">
     <thead>
         <tr>
-            <th>
+            <th onclick="sortTable(0)">
                 @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
             </th>
-            <th>
+            <th onclick="sortTable(1)">
                 @Html.DisplayNameFor(model => model.CarModel[0].Model)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CarModel) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.CarModel)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -5,15 +5,8 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    tbody tr:nth-child(even) {
-        background-color: #f3f3f3;
-    }
-
-    tbody tr:hover {
-        background-color: rgba(99,154,255,0.50);
-    }
-</style>
+<link rel="stylesheet" href="~/css/main.css" />
+<script src="~/js/main.js"></script>
 
 <h1>Index</h1>
 @if (User.IsInRole("Administrator"))
@@ -22,77 +15,78 @@
         <a asp-page="Create">Create New</a>
     </p>
 }
-<table class="table">
+<table class="table" id="dynamicTable">
     <thead>
         <tr>
             @if (User.IsInRole("Administrator"))
             {
-                <th>
+                <th onclick="sortTable(0)">
                     @Html.DisplayNameFor(model => model.Car[0].VIN)
                 </th>
-                <th>
+                <th onclick="sortTable(1)">
                     @Html.DisplayNameFor(model => model.Car[0].ModelId)
                 </th>
             }
-            <th>
+            <th onclick="sortTable(2)">
                 @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
             </th>
-            <th>
+            <th onclick="sortTable(3)">
                 @Html.DisplayNameFor(model => model.CarModel[0].Model)
             </th>
-            <th>
+            <th onclick="sortTable(4)">
                 @Html.DisplayNameFor(model => model.Car[0].PricePerDay)
             </th>
-            <th>
+            <th onclick="sortTable(5)">
                 @Html.DisplayNameFor(model => model.Car[0].MileageKm)
             </th>
-            <th>
+            <th onclick="sortTable(6)">
                 @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Car) {
-        <tr>
-            @if (User.IsInRole("Administrator"))
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.VIN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModelId)
-                </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
-                    carModel => carModel.ID == item.ModelId
-                    ).Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
-                    carModel => carModel.ID == item.ModelId
-                    ).Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PricePerDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MileageKm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductionDate)
-            </td>
-            <td>
-                <a asp-page="/Rentals/Create" asp-route-id="@item.VIN">Rent</a>
-                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a>
+        @foreach (var item in Model.Car)
+        {
+            <tr>
                 @if (User.IsInRole("Administrator"))
                 {
-                    <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a>
-                    <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VIN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModelId)
+                    </td>
                 }
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
+                        carModel => carModel.ID == item.ModelId
+                        ).Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.CarModel.FirstOrDefault(
+                        carModel => carModel.ID == item.ModelId
+                        ).Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MileageKm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductionDate)
+                </td>
+                <td>
+                    <a asp-page="/Rentals/Create" asp-route-id="@item.VIN">Rent</a>
+                    <a asp-page="./Details" asp-route-id="@item.VIN">Details</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -64,7 +64,9 @@ namespace CarRentalApp.Pages.Cars
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                carsIQ = carsIQ.Where(s => s.CarModel.Manufacturer.Contains(searchString));
+                carsIQ = carsIQ.Where(s => s.CarModel.Manufacturer.Contains(searchString, StringComparison.CurrentCultureIgnoreCase) 
+                ||
+                s.CarModel.Model.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
             }
 
             switch (sortOrder)

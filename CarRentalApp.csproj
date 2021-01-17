@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\searchicon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\js\main.js" />
   </ItemGroup>
 

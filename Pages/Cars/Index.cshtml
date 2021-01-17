@@ -20,27 +20,41 @@
         <tr>
             @if (User.IsInRole("Administrator"))
             {
-                <th onclick="sortTable(0)">
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.VINSort">
                     @Html.DisplayNameFor(model => model.Car[0].VIN)
-                </th>
-                <th onclick="sortTable(1)">
+                </a>
+            </th>
+            <th onclick="sortTable(1)">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ModelIdSort">
                     @Html.DisplayNameFor(model => model.Car[0].ModelId)
-                </th>
+                </a>
+            </th>
             }
             <th onclick="sortTable(2)">
-                @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ManufacturerSort">
+                    @Html.DisplayNameFor(model => model.CarModel[0].Manufacturer)
+                </a>
             </th>
             <th onclick="sortTable(3)">
-                @Html.DisplayNameFor(model => model.CarModel[0].Model)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ModelSort">
+                    @Html.DisplayNameFor(model => model.CarModel[0].Model)
+                </a>
             </th>
             <th onclick="sortTable(4)">
-                @Html.DisplayNameFor(model => model.Car[0].PricePerDay)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.PricePerDaySort">
+                    @Html.DisplayNameFor(model => model.Car[0].PricePerDay)
+                </a>
             </th>
             <th onclick="sortTable(5)">
-                @Html.DisplayNameFor(model => model.Car[0].MileageKm)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.MileageKMSort">
+                    @Html.DisplayNameFor(model => model.Car[0].MileageKm)
+                </a>
             </th>
             <th onclick="sortTable(6)">
-                @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                    @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
+                </a>
             </th>
             <th></th>
         </tr>

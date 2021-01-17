@@ -99,7 +99,10 @@
                     @Html.DisplayFor(modelItem => item.Car.ProductionDate)
                 </td>
                 <td>
-                    <a asp-page="/Rentals/Create" asp-route-id="@item.Car.VIN">Rent</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-page="/Rentals/Create" asp-route-id="@item.Car.VIN">Rent</a>
+                    }
                     <a asp-page="./Details" asp-route-id="@item.Car.VIN">Details</a>
                     @if (User.IsInRole("Administrator"))
                     {

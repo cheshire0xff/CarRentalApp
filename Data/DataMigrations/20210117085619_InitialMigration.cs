@@ -11,8 +11,7 @@ namespace CarRentalApp.Data.DataMigrations
                 name: "Car",
                 columns: table => new
                 {
-                    VIN = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    VIN = table.Column<string>(nullable: false),
                     ModelId = table.Column<int>(nullable: false),
                     MileageKm = table.Column<uint>(nullable: false),
                     ProductionDate = table.Column<DateTime>(nullable: false),
@@ -43,8 +42,8 @@ namespace CarRentalApp.Data.DataMigrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CarID = table.Column<int>(nullable: false),
-                    UserID = table.Column<int>(nullable: false),
+                    CarID = table.Column<string>(nullable: false),
+                    UserID = table.Column<string>(nullable: false),
                     Price = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false)

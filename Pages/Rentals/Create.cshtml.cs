@@ -27,11 +27,11 @@ namespace CarRentalApp.Pages.Rentals
         // on post use it fill car id;
         public Car Car { get; set;}
         public CarModel CarModel { get; set;}
-        public IActionResult OnGet(int? id)
+        public IActionResult OnGet(string id)
         {
             if (id != null)
             {
-                Car = _context.Car.Find(id.Value);
+                Car = _context.Car.Find(id.ToString());
                 if (Car != null)
                 {
                     CarModel = _context.CarModel.Find(Car.ModelId);
@@ -39,17 +39,18 @@ namespace CarRentalApp.Pages.Rentals
             }
             return Page();
         }
+
         [BindProperty]
         public Rental Rental { get; set; }
         public int? days {get; set;}
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             if (id!= null)
             {
-                Car = _context.Car.Find(id.Value);
+                Car = _context.Car.Find(id.ToString());
             }
             if (!User.IsInRole("Administrator"))
             {

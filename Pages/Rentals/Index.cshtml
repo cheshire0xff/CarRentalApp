@@ -5,6 +5,9 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/css/main.css" />
+<script src="~/js/main.js"></script>
+
 <h1>Index</h1>
 @if (User.IsInRole("Administrator"))
 {
@@ -12,60 +15,61 @@
         <a asp-page="Create">Create New</a>
     </p>
 }
-<table class="table">
+<table class="table" id="dynamicTable">
     <thead>
         <tr>
             @if (User.IsInRole("Administrator"))
             {
-                <th>
+                <th onclick="sortTable(0)">
                     @Html.DisplayNameFor(model => model.Rental[0].CarID)
                 </th>
-                <th>
+                <th onclick="sortTable(1)">
                     @Html.DisplayNameFor(model => model.Rental[0].UserID)
                 </th>
             }
-            <th>
+            <th onclick="sortTable(2)">
                 @Html.DisplayNameFor(model => model.Rental[0].Price)
             </th>
-            <th>
+            <th onclick="sortTable(3)">
                 @Html.DisplayNameFor(model => model.Rental[0].StartDate)
             </th>
-            <th>
+            <th onclick="sortTable(4)">
                 @Html.DisplayNameFor(model => model.Rental[0].EndDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Rental) {
-        <tr>
-            @if (User.IsInRole("Administrator"))
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.CarID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
-                </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @if(User.IsInRole("Administrator"))
+        @foreach (var item in Model.Rental)
+        {
+            <tr>
+                @if (User.IsInRole("Administrator"))
                 {
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CarID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserID)
+                    </td>
                 }
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

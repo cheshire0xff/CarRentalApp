@@ -22,14 +22,14 @@ namespace CarRentalApp.Pages.Cars
         [BindProperty]
         public Car Car { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Car = await _context.Car.FirstOrDefaultAsync(m => m.VIN == id);
+            Car = await _context.Car.FirstOrDefaultAsync(m => m.VIN == id.ToString());
 
             if (Car == null)
             {
@@ -38,7 +38,7 @@ namespace CarRentalApp.Pages.Cars
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             if (id == null)
             {

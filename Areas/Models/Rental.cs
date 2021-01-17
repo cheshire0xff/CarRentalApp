@@ -9,7 +9,7 @@ namespace CarRentalApp.Models
         [Key]
         public int ID{ get; set;}
         [Required]
-        public int CarID { get; set;}
+        public string CarID { get; set;}
         [Required]
         public string UserID { get; set;}
         [Required]

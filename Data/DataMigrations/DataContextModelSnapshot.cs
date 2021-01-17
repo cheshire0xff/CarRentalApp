@@ -18,9 +18,8 @@ namespace CarRentalApp.Data.DataMigrations
 
             modelBuilder.Entity("CarRentalApp.Models.Car", b =>
                 {
-                    b.Property<int>("VIN")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("VIN")
+                        .HasColumnType("TEXT");
 
                     b.Property<uint>("MileageKm")
                         .HasColumnType("INTEGER");
@@ -64,8 +63,9 @@ namespace CarRentalApp.Data.DataMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CarID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("CarID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
@@ -76,8 +76,9 @@ namespace CarRentalApp.Data.DataMigrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
